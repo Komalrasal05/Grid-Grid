@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Four CSS Grid assignment examples: basic layout, blog page, responsive gallery, and dashboard.">
+  <title>CSS Grid Assignments</title>
+  <link rel="stylesheet" href="grid-assignments.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">HTML + CSS PRACTICE</p>
+    <h1>CSS Grid <span>Assignments</span></h1>
+    <p class="lead">Four ways to arrange content with CSS Grid.</p>
+    <nav class="jump-links" aria-label="Jump to assignment">
+      <a href="#assignment-1">01 Basic grid</a><a href="#assignment-2">02 Blog layout</a><a href="#assignment-3">03 Gallery</a><a href="#assignment-4">04 Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="assignment" id="assignment-1">
+      <div class="assignment-heading"><span class="number">01</span><div><p class="eyebrow">ASSIGNMENT 1</p><h2>Basic Grid Layout</h2><p>Create a 3 × 3 grid with 100px cells and a 10px gap.</p></div></div>
+      <div class="demo-panel basic-panel"><div class="basic-grid" aria-label="Three by three grid of nine colored boxes">
+        <div class="color-cell c1">1</div><div class="color-cell c2">2</div><div class="color-cell c3">3</div>
+        <div class="color-cell c4">4</div><div class="color-cell c5">5</div><div class="color-cell c6">6</div>
+        <div class="color-cell c7">7</div><div class="color-cell c8">8</div><div class="color-cell c9">9</div>
+      </div></div>
+      <pre><code>.basic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+}</code></pre>
+    </section>
+
+    <section class="assignment" id="assignment-2">
+      <div class="assignment-heading"><span class="number">02</span><div><p class="eyebrow">ASSIGNMENT 2</p><h2>Blog Page Layout</h2><p>Use named grid areas for a header, sidebar, main content, and footer.</p></div></div>
+      <div class="demo-panel blog-demo">
+        <header class="blog-header">The Daily Edit <span>Stories for curious minds</span></header>
+        <aside class="blog-sidebar"><strong>Explore</strong><a href="#assignment-2">Design</a><a href="#assignment-2">Culture</a><a href="#assignment-2">Travel</a><a href="#assignment-2">About us</a></aside>
+        <article class="blog-main"><p class="eyebrow">THE CITY ISSUE</p><h3>Stories from a city that never sits still</h3><p class="blog-byline">THE DAILY EDIT &nbsp;·&nbsp; 6 MIN READ</p><div class="blog-image" role="img" aria-label="City skyline at sunset"></div><p class="blog-copy">A collection of places, people, and small moments from around the city. Find a new perspective, then follow it somewhere unexpected.</p><div class="story-mosaic"><article><img src="grid-assets/blog-leaves.png" alt="Blue leaves in the evening"><span>The winter of my discontent</span></article><article><img src="grid-assets/blog-ocean.png" alt="A wave breaking on the coast"><span>Throwing my phone into the ocean</span></article><article><img src="grid-assets/blog-building.png" alt="City apartments in warm evening light"><span>I’m never leaving my room</span></article></div></article>
+        <footer class="blog-footer">THE DAILY EDIT &nbsp; · &nbsp; GOOD STORIES, EVERY WEEK</footer>
+      </div>
+      <pre><code>.blog-demo {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+}
+.blog-header { grid-area: header; }
+.blog-sidebar { grid-area: sidebar; }
+.blog-main { grid-area: main; }
+.blog-footer { grid-area: footer; }</code></pre>
+    </section>
+
+    <section class="assignment" id="assignment-3">
+      <div class="assignment-heading"><span class="number">03</span><div><p class="eyebrow">ASSIGNMENT 3</p><h2>Responsive Gallery</h2><p>Use <code>auto-fit</code> and <code>minmax()</code> to fit the screen.</p></div></div>
+      <div class="demo-panel gallery-panel"><div class="gallery-grid" aria-label="Responsive fruit gallery matching the class example">
+        <figure class="fruit-blueberries"><img src="grid-assets/fruit-blueberries.png" alt="Blueberries held in two hands"><figcaption>Blueberries</figcaption></figure>
+        <figure class="fruit-strawberries"><img src="grid-assets/fruit-strawberries.png" alt="Fresh strawberries held in two hands"><figcaption>Strawberries</figcaption></figure>
+        <figure class="fruit-watermelon"><img src="grid-assets/fruit-watermelon.png" alt="Red watermelon cubes arranged together"><figcaption>Watermelon</figcaption></figure>
+        <figure class="fruit-grapefruit"><img src="grid-assets/fruit-grapefruit.png" alt="Two halves of a red grapefruit"><figcaption>Grapefruit</figcaption></figure>
+        <figure class="fruit-papaya"><img src="grid-assets/fruit-papaya.png" alt="Papaya cut lengthwise with black seeds"><figcaption>Papaya</figcaption></figure>
+        <figure class="fruit-pineapple"><img src="grid-assets/fruit-pineapple.png" alt="Pineapples on a dark blue surface"><figcaption>Pineapple</figcaption></figure>
+      </div></div>
+      <pre><code>.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "blueberries strawberries watermelon watermelon"
+    "grapefruit grapefruit watermelon watermelon"
+    "papaya papaya pineapple pineapple";
+  gap: 12px;
+}
+.fruit-blueberries { grid-area: blueberries; }
+.fruit-strawberries { grid-area: strawberries; }
+.fruit-watermelon { grid-area: watermelon; }
+.fruit-grapefruit { grid-area: grapefruit; }
+.fruit-papaya { grid-area: papaya; }
+.fruit-pineapple { grid-area: pineapple; }
+@media (max-width: 700px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-areas: none;
+    grid-auto-rows: 150px;
+  }
+  .gallery-grid figure { grid-area: auto; }
+}</code></pre>
+    </section>
+
+    <section class="assignment" id="assignment-4">
+      <div class="assignment-heading"><span class="number">04</span><div><p class="eyebrow">ASSIGNMENT 4</p><h2>Dashboard Layout</h2><p>Arrange a header, navigation, main area, aside, and footer.</p></div></div>
+      <div class="demo-panel dashboard-demo">
+        <header class="dash-header"><span class="dash-logo">NORTHSTAR</span><span>Workspace / Overview</span><span class="avatar">AM</span></header>
+        <nav class="dash-nav" aria-label="Dashboard navigation"><a class="active" href="#assignment-4">Overview</a><a href="#assignment-4">Projects</a><a href="#assignment-4">Activity</a><a href="#assignment-4">Settings</a></nav>
+        <aside class="dash-left"><p class="eyebrow">PROJECTS</p><p>Website refresh</p><p>Brand guidelines</p><p>Q4 campaign</p></aside>
+        <section class="dash-main"><p class="eyebrow">MONDAY, 02 NOVEMBER 2026</p><h3>Good morning, Alex <span>✳</span></h3><p class="dash-subtitle">Here’s what’s happening with your workspace.</p><div class="stats"><article><span>ACTIVE PROJECTS</span><strong>08</strong><small>↑ 2 this month</small></article><article><span>TASKS COMPLETED</span><strong>24</strong><small>↑ 12% this week</small></article><article><span>TEAM MEMBERS</span><strong>06</strong><small>Across 3 projects</small></article></div><article class="activity"><div class="activity-title"><strong>Recent activity</strong><a href="#assignment-4">View all ↗</a></div><p><i class="dot green-dot"></i><span><b>Website refresh</b> moved to review<small>Today, 10:42 AM · Maya Chen</small></span></p><p><i class="dot blue-dot"></i><span><b>Brand guidelines</b> received a new comment<small>Today, 9:18 AM · Jordan Lee</small></span></p><p><i class="dot gold-dot"></i><span><b>Q4 campaign</b> project created<small>Yesterday, 4:06 PM · Alex Morgan</small></span></p></article></section>
+        <aside class="dash-right"><p class="eyebrow">YOUR DAY</p><div class="date-card"><span>NOVEMBER 2026</span><strong>02</strong><small>MONDAY</small></div><div class="up-next"><strong>Up next</strong><p><b>Design check-in</b><small>11:30 AM · 30 min</small></p><p><b>Project standup</b><small>2:00 PM · 45 min</small></p></div></aside>
+        <footer class="dash-footer">NORTHSTAR WORKSPACE &nbsp;·&nbsp; ALL SYSTEMS NORMAL</footer>
+      </div>
+      <pre><code>.dashboard-demo {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 3fr) 1fr;
+  grid-template-areas:
+    "header header header"
+    "navigation navigation navigation"
+    "left main right"
+    "footer footer footer";
+}
+.dash-header { grid-area: header; }
+.dash-nav { grid-area: navigation; }
+.dash-left { grid-area: left; }
+.dash-main { grid-area: main; }
+.dash-right { grid-area: right; }
+.dash-footer { grid-area: footer; }</code></pre>
+    </section>
+  </main>
+  <details class="teacher-references"><summary>View all teacher reference images</summary><div class="reference-grid"><figure><img src="grid-assets/teacher-reference-01-fruit-gallery.png" alt="Teacher reference for the fruit responsive gallery"><figcaption>Fruit gallery</figcaption></figure><figure><img src="grid-assets/teacher-reference-02-blog-grid.png" alt="Teacher reference for the blog page grid"><figcaption>Blog page grid</figcaption></figure><figure><img src="grid-assets/teacher-reference-03-responsive-grid.png" alt="Teacher reference diagram for responsive CSS Grid"><figcaption>Responsive grid</figcaption></figure><figure><img src="grid-assets/teacher-reference-04-image-grid.png" alt="Teacher reference collage showing image grid examples"><figcaption>Image grid examples</figcaption></figure><figure><img src="grid-assets/teacher-reference-05-dashboard.png" alt="Teacher reference wireframe for the dashboard grid"><figcaption>Dashboard wireframe</figcaption></figure></div></details>
+  <footer class="page-footer">CSS GRID PRACTICE <span>Build a little. Learn a lot.</span></footer>
+</body>
+</html>
